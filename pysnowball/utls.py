@@ -45,3 +45,25 @@ def fetch_without_token(url):
         raise Exception(response.content)
 
     return json.loads(response.content)
+
+## And by liaolihua
+def fetch_with_params(url,host,params):
+    HEADERS = {'Host': host,
+               'Accept': 'application/json',
+               'Cookie': token.get_token(),
+               'User-Agent': 'Xueqiu iPhone 11.8',
+               'Accept-Language': 'zh-Hans-CN;q=1, ja-JP;q=0.9',
+               'Accept-Encoding': 'br, gzip, deflate',
+               'Connection': 'keep-alive'}
+
+    response = requests.get(url,params=params,headers=HEADERS)
+
+    # print(url)
+    # print(HEADERS)
+    # print(response)
+    # print(response.content)
+
+    if response.status_code != 200:
+        raise Exception(response.content)
+
+    return json.loads(response.content)
